@@ -18,33 +18,40 @@ function game (rounds) {
         }        
     }
 
-    function playRound(playerSelection, computerSelection) {        
-        let roundWinner =   playerSelection === 'rock' && computerSelection === 'paper'    ? 'computerSelection' 
+    function playRound(playerSelection, computerSelection) {    
+        console.log(typeof playerSelection);
+        console.log(typeof computerSelection);    
+        let roundWinner =   playerSelection === 'rock' && computerSelection === 'scissors'    ? 'playerSelection' 
+                          : playerSelection === 'scissors' && computerSelection === 'paper' ? 'playerSelection'
                           : playerSelection === 'paper' && computerSelection === 'rock'    ? 'playerSelection'    
-                          : playerSelection === 'scissors' && computerSelection === 'rock' ? 'computerSelection'  
-                          : playerSelection === 'rock' && computerSelection === 'scissors' ? 'playerSelection'    
-                          : playerSelection === 'scissors' && computerSelection === 'rock' ? 'computerSelection'  
-                          : playerSelection === 'rock' && computerSelection === 'scissors' ? 'playerSelection'  
-                          : 'It\'s a tie';             
-        console.log('The computer chose: ' + computerSelection); 
-        console.log('The human chose: ' + playerSelection);     
-        console.log('The winner is: ' + roundWinner);  
+                          : playerSelection === 'rock' && computerSelection === 'scissors' ? 'computerSelection'  
+                          : playerSelection === 'scissors' && computerSelection === 'paper' ? 'computerSelection'                                                       
+                          : playerSelection === 'paper' && computerSelection === 'rock' ? 'computerSelection'  // Shoot!
+                          : 'It\'s a tie';  
+
+        alert(`The computer chose: + ${computerSelection}
+              The human chose: + ${playerSelection}
+              The winner is: + ${roundWinner}`);   
         scoreTally(roundWinner);   
     }
 
     function playGame(rounds) {
         function computerPlay () {
-                let weapons = ['rock', 'paper', 'scissors'];
-                let selection = weapons[Math.floor(Math.random() * weapons.length)];
-            return selection; 
+            let weapons = ['rock', 'paper', 'scissors'];
+            let selection = weapons[Math.floor(Math.random() * weapons.length)];
+        return selection; 
+        }
+        function playerSelection(){
+            let weapons = prompt("Choose your weapon: rock, paper or scissors", );
+        return weapons; 
         }
 
         let round = rounds;
         for(let i = 0; i < round; i++) {
             console.log(i);
-            let playerSelection = "rock";
+            let humanPlay = playerSelection();
             let computerSelection = computerPlay();
-            playRound(playerSelection, computerSelection);
+            playRound(humanPlay, computerSelection);
         } 
  
         if (playerScore > computerScore) {
@@ -63,7 +70,7 @@ function game (rounds) {
     }
     playGame(rounds);
 }
-game(20000);
+game(1); //choose the number of games here
 
 
 
