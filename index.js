@@ -21,17 +21,18 @@ function game (rounds) {
     function playRound(playerSelection, computerSelection) {    
         console.log(typeof playerSelection);
         console.log(typeof computerSelection);    
-        let roundWinner =   playerSelection === 'rock' && computerSelection === 'scissors'    ? 'playerSelection' 
-                          : playerSelection === 'scissors' && computerSelection === 'paper' ? 'playerSelection'
-                          : playerSelection === 'paper' && computerSelection === 'rock'    ? 'playerSelection'    
-                          : playerSelection === 'rock' && computerSelection === 'scissors' ? 'computerSelection'  
-                          : playerSelection === 'scissors' && computerSelection === 'paper' ? 'computerSelection'                                                       
-                          : playerSelection === 'paper' && computerSelection === 'rock' ? 'computerSelection'  // Shoot!
+        let roundWinner =   playerSelection === 'rock' && computerSelection === 'scissors'    ?  'playerSelection'
+                          : playerSelection === 'paper' && computerSelection === 'rock'       ?  'playerSelection'
+                          : playerSelection === 'scissors' && computerSelection === 'paper'   ?  'playerSelection'
+                          : playerSelection === 'scissors' && computerSelection === 'rock'    ?  'computerSelection'                              
+                          : playerSelection === 'rock' && computerSelection === 'paper'      ?  'computerSelection'                                                                                   
+                          : playerSelection === 'paper' && computerSelection === 'scissors'    ?  'computerSelection'  // Shoot!
                           : 'It\'s a tie';  
 
-        alert(`The computer chose: + ${computerSelection}
-              The human chose: + ${playerSelection}
-              The winner is: + ${roundWinner}`);   
+        alert(
+             `The computer chose:  ${computerSelection}
+              The human chose:  ${playerSelection}
+              The winner is:  ${roundWinner}`);   
         scoreTally(roundWinner);   
     }
 
@@ -42,7 +43,7 @@ function game (rounds) {
         return selection; 
         }
         function playerSelection(){
-            let weapons = prompt("Choose your weapon: rock, paper or scissors", );
+            let weapons = prompt("Choose your weapon: rock, paper or scissors",);
         return weapons; 
         }
 
