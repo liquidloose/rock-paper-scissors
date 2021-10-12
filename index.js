@@ -28,7 +28,6 @@ function game (rounds) {
                           : playerSelection === 'rock' && computerSelection === 'paper'      ?  'computerSelection'                                                                                   
                           : playerSelection === 'paper' && computerSelection === 'scissors'    ?  'computerSelection'  // Shoot!
                           : 'It\'s a tie';  
-
         alert(
              `The computer chose:  ${computerSelection}
               The human chose:  ${playerSelection}
@@ -53,21 +52,7 @@ function game (rounds) {
             let humanPlay = playerSelection();
             let computerSelection = computerPlay();
             playRound(humanPlay, computerSelection);
-        } 
- 
-        if (playerScore > computerScore) {
-            console.log('Humans win!!!');
-            console.log(`FINAL SCORE:  
-                        Human: ${playerScore}
-                        Computer: ${computerScore}
-                        Ties: ${tieScore}`);
-        } else if (computerScore > playerScore) {
-            console.log('Bow to your computer overlord, for I have won!'); 
-            console.log(`FINAL SCORE:  
-                        Human: ${playerScore}
-                        Computer: ${computerScore}
-                        Ties: ${tieScore}`);
-        }
+        }  
     }
     playGame(rounds);
 }
