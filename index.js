@@ -23,7 +23,6 @@ function game (rounds) {
              `The computer chose:  ${computerSelection}
               The human chose:  ${playerSelection}
               The winner is:  ${roundWinner}`);   
-        scoreTally(roundWinner);   
     }    
 
     function playGame(rounds, playerSelection,computerSelection ) {
