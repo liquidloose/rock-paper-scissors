@@ -21,12 +21,12 @@ function game (rounds) {
     function playRound(playerSelection, computerSelection) {    
         console.log(typeof playerSelection);
         console.log(typeof computerSelection);    
-        let roundWinner =   playerSelection === 'rock' && computerSelection === 'scissors'    ?  'playerSelection'
-                          : playerSelection === 'paper' && computerSelection === 'rock'       ?  'playerSelection'
-                          : playerSelection === 'scissors' && computerSelection === 'paper'   ?  'playerSelection'
-                          : playerSelection === 'scissors' && computerSelection === 'rock'    ?  'computerSelection'                              
-                          : playerSelection === 'rock' && computerSelection === 'paper'       ?  'computerSelection'                                                                                   
-                          : playerSelection === 'paper' && computerSelection === 'scissors'   ?  'computerSelection'  // Shoot!
+        let roundWinner =   playerSelection === 'rock'     && computerSelection === 'scissors' ? 'playerSelection'
+                          : playerSelection === 'paper'    && computerSelection === 'rock'     ? 'playerSelection'
+                          : playerSelection === 'scissors' && computerSelection === 'paper'    ? 'playerSelection'
+                          : playerSelection === 'scissors' && computerSelection === 'rock'     ? 'computerSelection'                              
+                          : playerSelection === 'rock'     && computerSelection === 'paper'    ? 'computerSelection'                                                                                   
+                          : playerSelection === 'paper'    && computerSelection === 'scissors' ? 'computerSelection'  // Shoot!
                           : 'It\'s a tie';  
         alert(
              `The computer chose:  ${computerSelection}
