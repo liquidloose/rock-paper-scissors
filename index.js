@@ -42,8 +42,8 @@ function game (rounds) {
         let round = rounds;
         for(let i = 0; i < round; i++) {
             console.log(i);
-            const playerSelection = "rock";
-             const computerSelection = computerPlay();
+            let playerSelection = "rock";
+            let computerSelection = computerPlay();
             playRound(playerSelection, computerSelection);
         } 
  
