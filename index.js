@@ -1,22 +1,15 @@
-
 function game (rounds) {  
-    let playerScore = 0;
-    let computerScore = 0;
-    let tieScore  = 0;
-    function scoreTally (roundWinner) {       
-        if (roundWinner === 'computerSelection'){
-            console.log(typeof roundWinner);
-            console.log('Computer won');
-            computerScore++;
-            console.log('The computer\'s score is: ' + computerScore)
-        } else if (roundWinner === 'playerSelection'){
-            playerScore++;
-            console.log('Human won, their score: ' + playerScore);
-        }else {
-            tieScore++;
-            console.log('The number of ties is: ' + tieScore);
-        }        
-    }
+
+    function computerSelection () {
+            let weapons = ['rock', 'paper', 'scissors'];
+            let selection = weapons[Math.floor(Math.random() * weapons.length)];
+        return selection; 
+        }
+
+    function playerSelection() {
+        let humanChoice = prompt("Choose your weapon: rock, paper or scissors", );
+        return humanChoice;
+    } 
 
     function playRound(playerSelection, computerSelection) {               
         let roundWinner =   playerSelection === 'rock'     && computerSelection === 'scissors' ? 'Human'
@@ -31,28 +24,15 @@ function game (rounds) {
               The human chose:  ${playerSelection}
               The winner is:  ${roundWinner}`);   
         scoreTally(roundWinner);   
-    }
+    }    
 
-    function playGame(rounds) {
-        function computerPlay () {
-            let weapons = ['rock', 'paper', 'scissors'];
-            let selection = weapons[Math.floor(Math.random() * weapons.length)];
-        return selection; 
-        }
-        function playerSelection(){
-            let weapons = prompt("Choose your weapon: rock, paper or scissors",);
-        return weapons; 
-        }
-
+    function playGame(rounds, playerSelection,computerSelection ) {
         let round = rounds;
-        for(let i = 0; i < round; i++) {
-            console.log(i);
-            let humanPlay = playerSelection();
-            let computerSelection = computerPlay();
-            playRound(humanPlay, computerSelection);
+        for(let i = 0; i < round; i++) {       
+            playRound(playerSelection(), computerSelection());
         }  
-    }
-    playGame(rounds);
+    }    
+    playGame(rounds, playerSelection, computerSelection);
 }
 game(1); //choose the number of games here
 
