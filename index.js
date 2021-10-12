@@ -1,9 +1,8 @@
-function game (rounds) {   
 
-        let playerScore = 0;
-        let computerScore = 0;
-        let tieScore  = 0;
-
+function game (rounds) {  
+    let playerScore = 0;
+    let computerScore = 0;
+    let tieScore  = 0;
     function scoreTally (roundWinner) {       
         if (roundWinner === 'computerSelection'){
             console.log(typeof roundWinner);
@@ -16,12 +15,10 @@ function game (rounds) {
         }else {
             tieScore++;
             console.log('The number of ties is: ' + tieScore);
-        }
-        
+        }        
     }
 
-    function playRound(playerSelection, computerSelection) {
-        
+    function playRound(playerSelection, computerSelection) {        
         let roundWinner =   playerSelection === 'rock' && computerSelection === 'paper'    ? 'computerSelection' 
                           : playerSelection === 'paper' && computerSelection === 'rock'    ? 'playerSelection'    
                           : playerSelection === 'scissors' && computerSelection === 'rock' ? 'computerSelection'  
@@ -29,20 +26,18 @@ function game (rounds) {
                           : playerSelection === 'scissors' && computerSelection === 'rock' ? 'computerSelection'  
                           : playerSelection === 'rock' && computerSelection === 'scissors' ? 'playerSelection'  
                           : 'It\'s a tie';             
-            console.log('The computer chose: ' + computerSelection); 
-            console.log('The human chose: ' + playerSelection);     
-            console.log('The winner is: ' + roundWinner);   
-
-            scoreTally(roundWinner);   
+        console.log('The computer chose: ' + computerSelection); 
+        console.log('The human chose: ' + playerSelection);     
+        console.log('The winner is: ' + roundWinner);  
+        scoreTally(roundWinner);   
     }
 
     function playGame(rounds) {
-
         function computerPlay () {
-                    let weapons = ['rock', 'paper', 'scissors'];
-                    let selection = weapons[Math.floor(Math.random() * weapons.length)];
-                return selection; 
-            }
+                let weapons = ['rock', 'paper', 'scissors'];
+                let selection = weapons[Math.floor(Math.random() * weapons.length)];
+            return selection; 
+        }
 
         let round = rounds;
         for(let i = 0; i < round; i++) {
@@ -68,8 +63,7 @@ function game (rounds) {
     }
     playGame(rounds);
 }
-
-game(50);
+game(20000);
 
 
 
