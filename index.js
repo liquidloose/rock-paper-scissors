@@ -25,8 +25,8 @@ function game (rounds) {
                           : playerSelection === 'paper' && computerSelection === 'rock'       ?  'playerSelection'
                           : playerSelection === 'scissors' && computerSelection === 'paper'   ?  'playerSelection'
                           : playerSelection === 'scissors' && computerSelection === 'rock'    ?  'computerSelection'                              
-                          : playerSelection === 'rock' && computerSelection === 'paper'      ?  'computerSelection'                                                                                   
-                          : playerSelection === 'paper' && computerSelection === 'scissors'    ?  'computerSelection'  // Shoot!
+                          : playerSelection === 'rock' && computerSelection === 'paper'       ?  'computerSelection'                                                                                   
+                          : playerSelection === 'paper' && computerSelection === 'scissors'   ?  'computerSelection'  // Shoot!
                           : 'It\'s a tie';  
         alert(
              `The computer chose:  ${computerSelection}
