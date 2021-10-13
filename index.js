@@ -18,16 +18,16 @@ function game (rounds) {
                           : playerSelection === 'paper'    && computerSelection === 'scissors' ? 'Machine' 
                           : playerSelection      ===          computerSelection                ? 'Neither man, nor machine.' // Shoot!                          
                           : 'I\'m sorry, there was a user input error.';  
-        alert(
-             `The computer chose:  ${computerSelection}
-              The human chose:  ${playerSelection}
-              The winner is:  ${roundWinner}`);   
+            alert(
+                `The computer chose:  ${computerSelection}
+                The human chose:  ${playerSelection}
+                The winner is:  ${roundWinner}`);   
     }    
     function playGame(rounds, playerSelection,computerSelection ) {
         let round = rounds;
-        for(let i = 0; i < round; i++) {       
-            playRound(playerSelection(), computerSelection());
-        }  
+            for(let i = 0; i < round; i++) {       
+                playRound(playerSelection(), computerSelection());
+            }  
     }    
     playGame(rounds, playerSelection, computerSelection);
 }
