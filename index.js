@@ -7,7 +7,6 @@ function game (rounds) {
     function playerSelection () {
             let humanChoicePrompt = prompt("Choose your weapon: rock, paper or scissors", );
             let humanChoice = humanChoicePrompt.toLowerCase(); 
-            console.log(humanChoice.substr(0,8));    
         return humanChoice;
     } 
     function playRound(playerSelection, computerSelection) {               
