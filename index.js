@@ -1,45 +1,49 @@
-function game(rounds) {
-  function computerSelection() {
-    let weapons = ["rock", "paper", "scissors"];
-    let selection = weapons[Math.floor(Math.random() * weapons.length)];
-    return selection;
-  }
-  function playerSelection() {
-    let humanChoicePrompt = prompt(
-      "Choose your weapon: rock, paper or scissors"
-    );
-    let humanChoice = humanChoicePrompt.toLowerCase();
-    return humanChoice;
-  }
-  function playRound(playerSelection, computerSelection) {
-    let roundWinner =
-      playerSelection === "rock" && computerSelection === "scissors"
-        ? "Human"
-        : playerSelection === "paper" && computerSelection === "rock"
-        ? "Human"
-        : playerSelection === "scissors" && computerSelection === "paper"
-        ? "Human"
-        : playerSelection === "scissors" && computerSelection === "rock"
-        ? "Machine"
-        : playerSelection === "rock" && computerSelection === "paper"
-        ? "Machine"
-        : playerSelection === "paper" && computerSelection === "scissors"
-        ? "Machine"
-        : playerSelection === computerSelection
-        ? "Neither man, nor machine." // Shoot!
-        : "I'm sorry, there was a user input error.";
-    alert(
-      `The computer chose:  ${computerSelection}
-                The human chose:  ${playerSelection}
-                The winner is:  ${roundWinner}`
-    );
-  }
-  function playGame(rounds, playerSelection, computerSelection) {
-    let round = rounds;
-    for (let i = 0; i < round; i++) {
-      playRound(playerSelection(), computerSelection());
-    }
-  }
-  playGame(rounds, playerSelection, computerSelection);
+function computerSelection() {
+  let weapons = ["rock", "paper", "scissors"];
+  let computerSelection = weapons[Math.floor(Math.random() * weapons.length)];
+  alert(`this is the ${computerSelection}`);
+  return computerSelection;
 }
-game(1); //choose the number of games here
+function playerSelection(computerSelection) {
+  let selection;
+  alert(computerSelection());
+  let buttons = document.querySelectorAll("button");
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      selection = button.id;
+      game(selection, computerSelection);
+    });
+  });
+}
+
+function playRound(playerSelection, computerSelection) {
+  let roundWinner =
+    playerSelection === "rock" && computerSelection === "scissors"
+      ? "Human"
+      : playerSelection === "paper" && computerSelection === "rock"
+      ? "Human"
+      : playerSelection === "scissors" && computerSelection === "paper"
+      ? "Human"
+      : playerSelection === "scissors" && computerSelection === "rock"
+      ? "Machine"
+      : playerSelection === "rock" && computerSelection === "paper"
+      ? "Machine"
+      : playerSelection === "paper" && computerSelection === "scissors"
+      ? "Machine"
+      : playerSelection === computerSelection
+      ? "Neither man, nor machine." // Shoot!
+      : "I'm sorry, there was an input error.";
+  alert(
+    `The computer chose:  ${computerSelection}
+              The human chose:  ${playerSelection}
+              The winner is:  ${roundWinner}`
+  );
+}
+
+let selection = playerSelection(computerSelection);
+let compSelection = computerSelection();
+
+function game(selection, compSelection) {
+
+  playRound(selection, compSelection);
+}

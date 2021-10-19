@@ -1,4 +1,37 @@
-html {
-    background-color: yellowgreen;
-    color: blue;
+#container {
+  display: flex;
+  flex-direction: column;
+  background-color: chartreuse;
+  text-align: center;
+  gap: 50px;
+}
+
+#container-2 {
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+  justify-content: center;
+  flex-grow: 1;
+}
+#container-3 {
+  margin-top: 20%;
+  display: flex;
+  gap: 80px;
+}
+
+button {
+  box-shadow: 10px 10px 10px 10px #888888;
+  
+  font-size: 30px;
+  width: 7em;
+  height: 3em;
+  background-color: blue;
+  color: chartreuse;
+  border-color: blue;
+}
+
+button:hover {
+  background-color: lightgray;
+  border-color: white;
+  color: blue;
 }
