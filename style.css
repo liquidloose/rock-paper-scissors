@@ -1,27 +1,49 @@
+
 #container {
   display: flex;
   flex-direction: column;
-  background-color: chartreuse;
+  background-color: darkslategray;
   text-align: center;
-  gap: 50px;
+  gap: 5px;
 }
-
+#card-1 {
+  display: flex;
+}
 #container-2 {
   display: flex;
-  height: 100vh;
+  height: 70vh;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   flex-grow: 1;
+  gap: 100px;
 }
 #container-3 {
-  margin-top: 20%;
+  margin-top: 0;
+  margin-bottom: 90px;
+  justify-content: center;
   display: flex;
   gap: 80px;
 }
+#container-inside {
+  display: flex;
+}
+#top-text {
+  display: flex;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: -50px;
+  color: chartreuse;
+  font-weight: 700;
+}
+#bottom-text {
+  display: flex;
+  justify-content: center;
+}
 
 button {
-  box-shadow: 10px 10px 10px 10px #888888;
-  
+  box-shadow: 10px 10px 10px 10px gray;
+
   font-size: 30px;
   width: 7em;
   height: 3em;
@@ -31,7 +53,36 @@ button {
 }
 
 button:hover {
-  background-color: lightgray;
-  border-color: white;
+  background-color: gray;
+  border-color: chartreuse;
   color: blue;
 }
+
+.computer-selection {
+  box-shadow: 25px 25px 25px 25px chartreuse;
+}
+
+#btn {
+  font-size: 25px;
+}
+
+.content {
+  display: flex;
+  width: 18em;
+  align-items:flex-end;
+  flex-wrap: wrap;
+  background-color: whitesmoke;
+  color: rgb(4, 77, 40);
+  font-size: 28px;
+  font-weight: 800;
+}
+
+/*
+.card-1 img {
+  box-shadow: 5px 5px 5px 5px white;
+}
+
+#card-1 {
+  box-shadow: 10px 10px 10px 10px chocolate;
+}
+*/
