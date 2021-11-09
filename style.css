@@ -28,7 +28,10 @@
   gap: 100px;
   margin-bottom: -29px;
 }
-
+#announcements{
+  color: chartreuse;
+  font-size: 28px;
+}
 
 #container-buttons {
   display: flex;
