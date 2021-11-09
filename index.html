@@ -3,36 +3,77 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="widdiv=device-widdiv, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
 
     <title id="title">Rock, paper, scissors, shoot!</title>
   </head>
   <body>
-    <div id="container">
-      <div id="top-text"><p>Rock Scissors Paper: Choose Your Weapon Wisely!</p></div>
+    <div id="container-1">
+      <div id="top-text">
+        <p>Rock Scissors Paper: Choose Your Weapon Wisely!</p>
+      </div>
       <div id="container-2">
-        <div id="cards">
+        <div id="card-1">
           <div>
             <img src="./scaled-rock.jpg" id="rock-img" alt="Balancing rock" />
           </div>
         </div>
         <div id="card-2">
-          <p><img src="./scaled-toilet-paper.jpg" id="paper-img" alt="Toilet paper" /></p>
+          <p>
+            <img
+              src="./scaled-scissors.jpg"
+              id="scissors-img"
+              alt="Types of scissors"
+            />
+          </p>
         </div>
         <div id="card-3">
-          <p><img src="./scaled-scissors.jpg" id="scissors-img" alt="Types of scissors" /></p>
+          <p>
+            <img
+              src="./scaled-toilet-paper.jpg"
+              id="paper-img"
+              alt="Toilet paper"
+            />
+          </p>
         </div>
       </div>
-      <div id="container-3">
-        <button id="rock">ROCK</button>
-        <button id="scissors">SCISSORS</button>
-        <button id="paper">PAPER</button>        
+      <div id="test-container">
+        <div class="scoreboard-container">
+          <div class="row-container">
+            <div class="content-container">
+              <p id="title">Scoreboard</p>
+            </div>
+          </div>
+          <div class="row-container">
+            <div>
+              <p id="round">Round: 0</p>
+            </div>
+          </div>
+          <div class="row-container" id="players">
+            <div class="content-container">
+              <p>Human</p>
+            </div>
+            <div class="content-container">
+              <p>Machine</p>
+            </div>
+          </div>
+          <div class="row-container" id="players">
+            <div class="content-container">
+              <p id="human-score">0</p>
+            </div>
+            <div class="content-container">
+              <p id="computer-score">0</p>
+            </div>
+          </div>
+        </div>
+        <div id="buttons">
+          <button id="rock">ROCK</button>
+          <button id="scissors">SCISSORS</button>
+          <button id="paper">PAPER</button>
+        </div>
       </div>
-
-      
     </div>
-
     <script src="index.js"></script>
   </body>
 </html>
