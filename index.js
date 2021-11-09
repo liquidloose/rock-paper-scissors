@@ -1,3 +1,14 @@
+
+
+function reset() {
+  round = 1;
+  humanScore = 0;
+  computerScore = 0;
+  changeRound(round);
+  changeScore(0, 'Human');
+  changeScore(0, 'Machine'); //triggers the changeScore(); function with simulated score for the output.
+}
+
 function computerSelection() {
   let weapons = ["rock", "paper", "scissors"];
   let selection = weapons[Math.floor(Math.random() * weapons.length)];
@@ -18,10 +29,15 @@ function playerSelection(computerSelection) {
       } else if (button.id === "paper") {
         playerSelection = "paper";
         playRound(playerSelection, computerSelection);
+      } else {
+        console.log(`this is before the button ${round}`);
+        reset();
+        console.log(round);
       }
     });
   });
 }
+
 
 function gameResults(computerSelection, roundWinner) {
   const container = document.querySelector("#container-2");
@@ -37,12 +53,13 @@ function gameResults(computerSelection, roundWinner) {
   test.classList.add("computer-selection");
 }
 
-function changeRound() {
-  let fetchRound = document.getElementById('round');
-  let newRound = document.createElement('p');
-  newRound.id = 'round';
-  newRound.innerHTML = `${round}`;
+function changeRound(round) {
+  let fetchRound = document.getElementById("round");
+  let newRound = document.createElement("p");
+  newRound.id = "round";
+  newRound.innerHTML = `Current Round: ${round}`;
   fetchRound.parentNode.replaceChild(newRound, fetchRound);
+  console.log(round);
 }
 
 function changeScore(score, roundWinner) {
@@ -67,11 +84,9 @@ function roundResults(computerSelection, playerSelection, roundWinner) {
   const content = document.createElement("div");
   content.classList.add("content");
   content.textContent = `
-  The computer chose:  ${computerSelection}\
-  The human chose:  ${playerSelection}\
-  The winner is:  ${roundWinner}\
-  The computer's score is: ${computerScore}\ 
-  `;
+  COMPUTER:  ${computerSelection}\
+  HUMAN:  ${playerSelection}\
+  WINNER:  ${roundWinner}`;
   // highlights computer selection with green box-shadow
   container.appendChild(content);
   let test = document.getElementById(`${computerSelection}-img`);
@@ -86,14 +101,14 @@ function roundResults(computerSelection, playerSelection, roundWinner) {
 
 function winnerCheck(computerSelection, playerSelection, roundWinner) {
   if (humanScore == 5) {
-    gameResults(playerSelection, playerSelection, roundWinner);
+    gameResults(playerSelection, roundWinner);
     changeScore(humanScore, roundWinner);
   } else if (computerScore == 5) {
-    gameResults(computerSelection, playerSelection, roundWinner);
+    gameResults(computerSelection, roundWinner);
     changeScore(computerScore, roundWinner);
-  } 
-  else {
+  } else {
     roundResults(computerSelection, playerSelection, roundWinner);
+    round++;
   }
 }
 
@@ -127,6 +142,7 @@ function playRound(playerSelection, computerSelection) {
       ? "Neither man, nor machine." // Shoot!
       : "I'm sorry, there was a user input error.";
 
+  changeRound(round);
   gameTally(computerSelection, playerSelection, roundWinner);
 }
 
@@ -138,4 +154,5 @@ function game() {
 let round = 1;
 let humanScore = 0;
 let computerScore = 0;
+
 game();
