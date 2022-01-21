@@ -1,0 +1,24 @@
+{
+  "name": "rock-paper-scissors",
+  "version": "1.0.0",
+  "description": "simple web based rock paper scissors game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liquidloose/rock-paper-scissors.git"
+  },
+  "author": "ronald lussier",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liquidloose/rock-paper-scissors/issues"
+  },
+  "homepage": "https://github.com/liquidloose/rock-paper-scissors#readme",
+  "devDependencies": {
+    "eslint": "^8.7.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4"
+  }
+}
