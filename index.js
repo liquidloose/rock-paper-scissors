@@ -123,15 +123,3 @@ function game() {
 }
 
 game();
-
-/*
-function reset() {
-  round = 1;
-  humanScore = 0;
-  computerScore = 0;
-  changeRound(round);
-  changeScore(0, 'Human');
-  changeScore(0, 'Machine'); // triggers the changeScore();
-   function with simulated score for the output.
-}
-*/
