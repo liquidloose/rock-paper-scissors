@@ -2,54 +2,35 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-nested-ternary */
 
-/*
-function reset() {
-  round = 1;
-  humanScore = 0;
-  computerScore = 0;
-  changeRound(round);
-  changeScore(0, 'Human');
-  changeScore(0, 'Machine'); // triggers the changeScore();
-   function with simulated score for the output.
-}
-*/
+const numOfRounds = 5;
+let round = 1;
+let humanScore = 0;
+let computerScore = 0;
+
 function computerSelection() {
   const weapons = ['rock', 'paper', 'scissors'];
-  const cpuSelection = weapons[Math.floor(Math.random() * weapons.length)];
-  return cpuSelection;
+  const selection = weapons[Math.floor(Math.random() * weapons.length)];
+  return selection;
 }
-
-function playerSelection(cpuChoice) {
-  const buttons = document.querySelectorAll('button');
+function bindButtons() {
+  const buttons = document.querySelectorAll('button#rock, button#paper, button#scissors');
   buttons.forEach((button) => {
     button.addEventListener('click', () => {
-      let playerSelection;
-      if (button.id === 'rock') {
-        playerSelection = 'rock';
-        changeRound(round);
-        playRound(playerSelection, cpuChoice);
-      } else if (button.id === 'scissors') {
-        changeRound(round);
-        playerSelection = 'scissors';
-        playRound(playerSelection, cpuChoice);
-      } else if (button.id === 'paper') {
-        changeRound(round);
-        playerSelection = 'paper';
-        playRound(playerSelection, cpuChoice);
-      }
+      changeRound(round);
+      playRound(button.id, computerSelection());
     });
   });
 }
-function gameResults(computerSelection, roundWinner) {
+function gameResults(computerPick, roundWinner) {
   const container = document.querySelector('#announcements');
   container.textContent = `FINAL WINNER:  ${roundWinner}`;
   // eslint-disable-next-line no-undef
   container.appendChild(content);
-  const test = document.getElementById(`${computerSelection}-img`);
+  const test = document.getElementById(`${computerPick}-img`);
   test.classList.add('computer-selection');
 }
-function changeRound(round) {
-  if (round <= numOfRounds) {
+function changeRound(gameRound) {
+  if (gameRound <= numOfRounds) {
     const fetchRound = document.getElementById('round');
     fetchRound.textContent = `Current Round: ${round}`;
   }
@@ -68,81 +49,89 @@ function changeScore(score, roundWinner) {
   }
 }
 
-function roundResults(computerSelection, playerSelection, roundWinner) {
+function roundResults(computerPick, winner) {
   // anounces results
   const container = document.querySelector('#announcements');
 
   container.textContent = `
-  Round winner: ${roundWinner}`;
+  Round winner: ${winner}`;
   // highlights computer selection with green box-shadow
-  const test = document.getElementById(`${computerSelection}-img`);
+  const test = document.getElementById(`${computerPick}-img`);
   test.classList.add('computer-selection');
 
-  if (roundWinner === 'Human') {
-    changeScore(humanScore, roundWinner);
-  } else if (roundWinner === 'Machine') {
-    changeScore(computerScore, roundWinner);
+  if (winner === 'Human') {
+    changeScore(humanScore, winner);
+  } else if (winner === 'Machine') {
+    changeScore(computerScore, winner);
   } else {
     changeRound(round);
   }
 }
 
-function winnerCheck(computerSelection, playerSelection, roundWinner) {
-  if (humanScore === numOfRounds) {
-    changeScore(humanScore, roundWinner);
-    gameResults(playerSelection, roundWinner);
+function winnerCheck(computerPick, playerPick, winner) {
+  if (playerPick === numOfRounds) {
+    changeScore(playerPick, winner);
+    gameResults(playerPick, winner);
     // eslint-disable-next-line no-undef
     button.disable();
-  } else if (computerScore === numOfRounds) {
-    changeScore(computerScore, roundWinner);
-    gameResults(computerSelection, roundWinner);
+  } else if (computerPick === numOfRounds) {
+    changeScore(computerPick, winner);
+    gameResults(computerPick, winner);
   } else {
-    roundResults(computerSelection, playerSelection, roundWinner);
+    roundResults(computerPick, winner);
     round++;
   }
 }
 
-function gameTally(computerSelection, playerSelection, roundWinner) {
-  if (roundWinner === 'Machine') {
+function gameTally(computerPick, playerPick, winner) {
+  if (winner === 'Machine') {
     computerScore += 1;
-    winnerCheck(computerSelection, playerSelection, roundWinner);
-  } else if (roundWinner === 'Human') {
+    winnerCheck(computerPick, playerPick, winner);
+  } else if (winner === 'Human') {
     humanScore += 1;
-    winnerCheck(computerSelection, playerSelection, roundWinner);
+    winnerCheck(computerPick, playerPick, winner);
   } else {
-    roundResults(computerSelection, playerSelection, roundWinner);
+    roundResults(computerPick, playerPick, winner);
     round += 1;
   }
 }
 
-function playRound(playerSelection, computerSelection) {
-  const roundWinner = playerSelection === 'rock' && computerSelection === 'scissors'
+function playRound(player, computer) {
+  // eslint-disable-next-line prefer-const
+  let roundWinner = player === 'rock' && computer === 'scissors'
     ? 'Human'
-    : playerSelection === 'paper' && computerSelection === 'rock'
+    : player === 'paper' && computer === 'rock'
       ? 'Human'
-      : playerSelection === 'scissors' && computerSelection === 'paper'
+      : player === 'scissors' && computer === 'paper'
         ? 'Human'
-        : playerSelection === 'scissors' && computerSelection === 'rock'
+        : player === 'scissors' && computer === 'rock'
           ? 'Machine'
-          : playerSelection === 'rock' && computerSelection === 'paper'
+          : player === 'rock' && computer === 'paper'
             ? 'Machine'
-            : playerSelection === 'paper' && computerSelection === 'scissors'
+            : player === 'paper' && computer === 'scissors'
               ? 'Machine'
-              : playerSelection === computerSelection
-                ? 'Not man, nor machine.' // Shoot!
+              : player === computer
+                ? 'Not man, nor machine.'
                 : "I'm sorry, there was a user input error.";
 
-  gameTally(computerSelection, playerSelection, roundWinner);
+  gameTally(computer, roundWinner);
 }
 
 function game() {
   const cpuChoice = computerSelection();
-  playerSelection(cpuChoice);
+  bindButtons(cpuChoice);
 }
 
-let numOfRounds = 5;
-let round = 1;
-let humanScore = 0;
-let computerScore = 0;
-
 game();
+
+/*
+function reset() {
+  round = 1;
+  humanScore = 0;
+  computerScore = 0;
+  changeRound(round);
+  changeScore(0, 'Human');
+  changeScore(0, 'Machine'); // triggers the changeScore();
+   function with simulated score for the output.
+}
+*/
