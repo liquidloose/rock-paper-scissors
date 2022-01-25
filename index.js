@@ -17,17 +17,16 @@ function bindButtons() {
   buttons.forEach((button) => {
     button.addEventListener('click', () => {
       changeRound(round);
-      playRound(button.id, computerSelection());
+      const computerPick = computerSelection();
+      playRound(button.id, computerPick);
+      removeColors();
+      addColors(computerPick);
     });
   });
 }
 function gameResults(computerPick, roundWinner) {
   const container = document.querySelector('#announcements');
   container.textContent = `FINAL WINNER:  ${roundWinner}`;
-  // eslint-disable-next-line no-undef
-  container.appendChild(content);
-  const test = document.getElementById(`${computerPick}-img`);
-  test.classList.add('computer-selection');
 }
 function changeRound(gameRound) {
   if (gameRound <= numOfRounds) {
@@ -48,21 +47,38 @@ function changeScore(score, roundWinner) {
     fetchComputerScore.parentNode.replaceChild(newItem, fetchComputerScore);
   }
 }
+function removeColors() {
+  const colorOne = document.getElementsByClassName('computer-selection-1');
+  while (colorOne.length) {
+    colorOne[0].classList.remove('computer-selection-1');
+  }
+  const colorTwo = document.getElementsByClassName('computer-selection-2');
+  while (colorTwo.length) {
+    colorTwo[0].classList.remove('computer-selection-2');
+  }
+}
+function addColors(computerPick) {
+  if (round % 2 === 0) {
+    const test = document.getElementById(`${computerPick}-img`);
+    test.classList.add('computer-selection-1');
+  } else {
+    const test = document.getElementById(`${computerPick}-img`);
+    test.classList.add('computer-selection-2');
+  }
+}
 
-function roundResults(computerPick, winner) {
+function roundResults(computerPick, roundWinner) {
   // anounces results
   const container = document.querySelector('#announcements');
 
   container.textContent = `
-  Round winner: ${winner}`;
+  Round winner: ${roundWinner}`;
   // highlights computer selection with green box-shadow
-  const test = document.getElementById(`${computerPick}-img`);
-  test.classList.add('computer-selection');
 
-  if (winner === 'Human') {
-    changeScore(humanScore, winner);
-  } else if (winner === 'Machine') {
-    changeScore(computerScore, winner);
+  if (roundWinner === 'Human') {
+    changeScore(humanScore, roundWinner);
+  } else if (roundWinner === 'Machine') {
+    changeScore(computerScore, roundWinner);
   } else {
     changeRound(round);
   }
@@ -97,8 +113,7 @@ function gameTally(computerPick, playerPick, winner) {
 }
 
 function playRound(player, computer) {
-  // eslint-disable-next-line prefer-const
-  let roundWinner = player === 'rock' && computer === 'scissors'
+  const roundWinner = player === 'rock' && computer === 'scissors'
     ? 'Human'
     : player === 'paper' && computer === 'rock'
       ? 'Human'
@@ -114,7 +129,7 @@ function playRound(player, computer) {
                 ? 'Not man, nor machine.'
                 : "I'm sorry, there was a user input error.";
 
-  gameTally(computer, roundWinner);
+  gameTally(computer, player, roundWinner);
 }
 
 function game() {

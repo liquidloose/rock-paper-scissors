@@ -51,9 +51,16 @@ button:hover {
   border-color: chartreuse;
   color: blue;
 }
-.computer-selection {
+.computer-selection-1 {
   box-shadow: 25px 25px 25px 25px chartreuse;
 }
+.computer-selection-2 {
+  box-shadow: 25px 25px 25px 25px blue;
+}
+
+
+
+
 #btn {
   font-size: 25px;
 }
