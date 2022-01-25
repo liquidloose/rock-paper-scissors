@@ -28,23 +28,17 @@ function gameResults(computerPick, roundWinner) {
   const container = document.querySelector('#announcements');
   container.textContent = `FINAL WINNER:  ${roundWinner}`;
 }
-function changeRound(gameRound) {
-  if (gameRound <= numOfRounds) {
-    const fetchRound = document.getElementById('round');
-    fetchRound.textContent = `Current Round: ${round}`;
-  }
+function changeRound() {
+  const fetchRound = document.getElementById('round');
+  fetchRound.textContent = `Current Round: ${round}`;
 }
-function changeScore(score, roundWinner) {
-  if (roundWinner === 'Human' && humanScore <= numOfRounds) {
+function changeScore(winner) {
+  if (winner === 'Human') {
     const fetchHumanScore = document.getElementById('human-score');
     fetchHumanScore.textContent = `${humanScore}`;
-  } else if (roundWinner === 'Machine' && computerScore <= numOfRounds) {
+  } else if (winner === 'Machine') {
     const fetchComputerScore = document.getElementById('computer-score');
     fetchComputerScore.textContent = `${computerScore}`;
-    const newItem = document.createElement('p');
-    newItem.id = 'computer-score';
-    newItem.innerHTML = `${score}`;
-    fetchComputerScore.parentNode.replaceChild(newItem, fetchComputerScore);
   }
 }
 function removeColors() {
@@ -67,47 +61,36 @@ function addColors(computerPick) {
   }
 }
 
-function roundResults(computerPick, roundWinner) {
+function roundResults(roundWinner) {
   // anounces results
   const container = document.querySelector('#announcements');
-
   container.textContent = `
   Round winner: ${roundWinner}`;
-  // highlights computer selection with green box-shadow
-
-  if (roundWinner === 'Human') {
-    changeScore(humanScore, roundWinner);
-  } else if (roundWinner === 'Machine') {
-    changeScore(computerScore, roundWinner);
-  } else {
-    changeRound(round);
-  }
 }
 
 function winnerCheck(computerPick, playerPick, winner) {
-  if (playerPick === numOfRounds) {
-    changeScore(playerPick, winner);
+  if (humanScore === numOfRounds) {
     gameResults(playerPick, winner);
-    // eslint-disable-next-line no-undef
-    button.disable();
-  } else if (computerPick === numOfRounds) {
-    changeScore(computerPick, winner);
+  } else if (computerScore === numOfRounds) {
     gameResults(computerPick, winner);
   } else {
-    roundResults(computerPick, winner);
-    round++;
+    roundResults(winner);
   }
 }
 
 function gameTally(computerPick, playerPick, winner) {
   if (winner === 'Machine') {
     computerScore += 1;
+    round++;
+    changeScore(winner);
     winnerCheck(computerPick, playerPick, winner);
   } else if (winner === 'Human') {
     humanScore += 1;
+    round++;
+    changeScore(winner);
     winnerCheck(computerPick, playerPick, winner);
   } else {
-    roundResults(computerPick, playerPick, winner);
+    roundResults(winner);
     round += 1;
   }
 }
