@@ -58,7 +58,18 @@ button:hover {
   box-shadow: 25px 25px 25px 25px blue;
 }
 
-
+.gray {
+  color:lightgrey;
+  background-color: lightgrey;
+  border-color: white;
+  outline: white;
+}
+.gray:hover{
+  color: white;
+  background-color: lightgrey;
+  border-color: white;
+  outline: white;
+}
 
 
 #btn {

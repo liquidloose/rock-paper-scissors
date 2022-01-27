@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-nested-ternary */
@@ -11,6 +12,17 @@ function computerSelection() {
   const weapons = ['rock', 'paper', 'scissors'];
   const selection = weapons[Math.floor(Math.random() * weapons.length)];
   return selection;
+}
+function resetButton() {
+  const reset = document.getElementById('reset');
+  reset.addEventListener('click', () => {
+    round = 1;
+    computerScore = 0;
+    humanScore = 0;
+    changeRound();
+    changeScore();
+    enableButtons();
+  });
 }
 function bindButtons() {
   const buttons = document.querySelectorAll('button#rock, button#paper, button#scissors');
@@ -39,6 +51,11 @@ function changeScore(winner) {
   } else if (winner === 'Machine') {
     const fetchComputerScore = document.getElementById('computer-score');
     fetchComputerScore.textContent = `${computerScore}`;
+  } else {
+    const fetchHumanScore = document.getElementById('human-score');
+    fetchHumanScore.textContent = `${humanScore}`;
+    const fetchComputerScore = document.getElementById('computer-score');
+    fetchComputerScore.textContent = `${computerScore}`;
   }
 }
 function removeColors() {
@@ -53,14 +70,19 @@ function removeColors() {
 }
 function addColors(computerPick) {
   if (round % 2 === 0) {
-    const test = document.getElementById(`${computerPick}-img`);
-    test.classList.add('computer-selection-1');
+    const compColorOne = document.getElementById(`${computerPick}-img`);
+    compColorOne.classList.add('computer-selection-1');
   } else {
-    const test = document.getElementById(`${computerPick}-img`);
-    test.classList.add('computer-selection-2');
+    const compColorTwo = document.getElementById(`${computerPick}-img`);
+    compColorTwo.classList.add('computer-selection-2');
   }
 }
-
+function grayWeaponButtons() {
+  const btns = document.querySelectorAll('button#rock, button#paper, button#scissors');
+  btns.forEach((button) => {
+    button.classList.add('gray');
+  });
+}
 function roundResults(roundWinner) {
   // anounces results
   const container = document.querySelector('#announcements');
@@ -68,11 +90,29 @@ function roundResults(roundWinner) {
   Round winner: ${roundWinner}`;
 }
 
+function disableButtons() {
+  const btns = document.querySelectorAll('button#rock, button#paper, button#scissors');
+  btns.forEach((button) => {
+    button.disabled = true;
+  });
+}
+function enableButtons() {
+  const btns = document.querySelectorAll('button#rock, button#paper, button#scissors');
+  btns.forEach((button) => {
+    button.disabled = false;
+    button.classList.remove('gray');
+  });
+}
+
 function winnerCheck(computerPick, playerPick, winner) {
-  if (humanScore === numOfRounds) {
+  if (humanScore >= numOfRounds) {
     gameResults(playerPick, winner);
-  } else if (computerScore === numOfRounds) {
+    disableButtons();
+    grayWeaponButtons();
+  } else if (computerScore >= numOfRounds) {
     gameResults(computerPick, winner);
+    disableButtons();
+    grayWeaponButtons();
   } else {
     roundResults(winner);
   }
@@ -91,7 +131,7 @@ function gameTally(computerPick, playerPick, winner) {
     winnerCheck(computerPick, playerPick, winner);
   } else {
     roundResults(winner);
-    round += 1;
+    round++;
   }
 }
 
@@ -118,6 +158,7 @@ function playRound(player, computer) {
 function game() {
   const cpuChoice = computerSelection();
   bindButtons(cpuChoice);
+  resetButton();
 }
 
 game();
