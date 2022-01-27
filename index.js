@@ -22,6 +22,8 @@ function resetButton() {
     changeRound();
     changeScore();
     enableButtons();
+    removeColors();
+    removeAnnouncement();
   });
 }
 function bindButtons() {
@@ -103,7 +105,10 @@ function enableButtons() {
     button.classList.remove('gray');
   });
 }
-
+function removeAnnouncement() {
+  const announcement = document.getElementById('announcements');
+  announcement.textContent = '';
+}
 function winnerCheck(computerPick, playerPick, winner) {
   if (humanScore >= numOfRounds) {
     gameResults(playerPick, winner);
