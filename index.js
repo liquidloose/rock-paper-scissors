@@ -127,21 +127,18 @@ function gameTally(computerPick, playerPick, winner) {
     computerScore += 1;
     round++;
     changeRound(round);
-
     changeScore(winner);
     winnerCheck(computerPick, playerPick, winner);
   } else if (winner === 'Human') {
     humanScore += 1;
     round++;
     changeRound(round);
-
     changeScore(winner);
     winnerCheck(computerPick, playerPick, winner);
   } else {
-    changeRound(round);
-
-    roundResults(winner);
     round++;
+    changeRound(round);
+    roundResults(winner);
   }
 }
 
