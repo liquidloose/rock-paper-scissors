@@ -30,7 +30,6 @@ function bindButtons() {
   const buttons = document.querySelectorAll('button#rock, button#paper, button#scissors');
   buttons.forEach((button) => {
     button.addEventListener('click', () => {
-      changeRound(round);
       const computerPick = computerSelection();
       playRound(button.id, computerPick);
       removeColors();
@@ -119,7 +118,7 @@ function winnerCheck(computerPick, playerPick, winner) {
     disableButtons();
     grayWeaponButtons();
   } else {
-    roundResults(winner);
+    changeRound(round);
   }
 }
 
@@ -127,14 +126,20 @@ function gameTally(computerPick, playerPick, winner) {
   if (winner === 'Machine') {
     computerScore += 1;
     round++;
+    changeRound(round);
+
     changeScore(winner);
     winnerCheck(computerPick, playerPick, winner);
   } else if (winner === 'Human') {
     humanScore += 1;
     round++;
+    changeRound(round);
+
     changeScore(winner);
     winnerCheck(computerPick, playerPick, winner);
   } else {
+    changeRound(round);
+
     roundResults(winner);
     round++;
   }
