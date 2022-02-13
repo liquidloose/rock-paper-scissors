@@ -87,8 +87,7 @@ function grayWeaponButtons() {
 function roundResults(roundWinner) {
   // anounces results
   const container = document.querySelector('#announcements');
-  container.textContent = `
-  Round winner: ${roundWinner}`;
+  container.textContent = `Round winner: ${roundWinner}`;
 }
 
 function disableButtons() {
@@ -126,12 +125,14 @@ function gameTally(computerPick, playerPick, winner) {
   if (winner === 'Machine') {
     computerScore += 1;
     round++;
+    roundResults(winner);
     changeRound(round);
     changeScore(winner);
     winnerCheck(computerPick, playerPick, winner);
   } else if (winner === 'Human') {
     humanScore += 1;
     round++;
+    roundResults(winner);
     changeRound(round);
     changeScore(winner);
     winnerCheck(computerPick, playerPick, winner);
